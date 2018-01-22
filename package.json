@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/TheTash/Avatar-Downloader/issues"
   },
-  "homepage": "https://github.com/TheTash/Avatar-Downloader#readme"
+  "homepage": "https://github.com/TheTash/Avatar-Downloader#readme",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
 }

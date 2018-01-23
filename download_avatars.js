@@ -1,20 +1,17 @@
 var request = require('request');
 var authRequest = require('./secrets.js');
 
-console.log("Welcome to GitHub Downloader!");
-
 
 function getRepoContributors(repOwner,repoName, callback){
 
   var options = {
-    
 
     url : "https://api.github.com/repos/" + repOwner + "/" + repoName + "/contributors",
 
     headers : {
       "User-Agent": 'request',
       "Authorization": 'token ' + authRequest.GITHUB_TOKEN
-    }
+    },
 
   // Options Object Keys: 1. url, 2. headers
   // headers Object Keys: 1. User-agent 2. Authorization
@@ -22,13 +19,15 @@ function getRepoContributors(repOwner,repoName, callback){
 };
 
 
+
 request(options, function(err, res, body) {
-    callback(err, JSON.parse(body));
-  });
+
+  var parsed = JSON.parse(body);
+  callback(err, parsed.map(x => x.avatar_url));
+    // expected output: Array [2, 8, 18, 32]
+});
 }
 
-
-getRepoContributors("jquery", "jquery", function (err, body) {
-  console.log("Errors", err);
-  console.log('Results', body);
+getRepoContributors("jquery", "jquery", function (err, contributors) {
+  console.log('Results', contributors);
 });

@@ -18,8 +18,6 @@ function getRepoContributors(repOwner,repoName, callback){
 
 };
 
-
-
 request(options, function(err, res, body) {
 
   var parsed = JSON.parse(body);
@@ -27,6 +25,12 @@ request(options, function(err, res, body) {
     // expected output: Array [2, 8, 18, 32]
 });
 }
+
+function downloadImageByUrl(url, filePath){
+  
+}
+
+
 
 getRepoContributors("jquery", "jquery", function (err, contributors) {
   console.log('Results', contributors);
